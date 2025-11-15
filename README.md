@@ -63,3 +63,5 @@ Problemas comuns
 Licença e notas finais
 ----------------------
 O código original didático (Peter Shirley) está liberado em domínio público/CC0 conforme indicado pelo autor. Esta adaptação segue a mesma intenção educacional e é um experimento pessoal para estudar port de código para CUDA.
+
+![Saída final](./build/out.png)
