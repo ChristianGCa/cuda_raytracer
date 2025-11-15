@@ -16,6 +16,7 @@
 #include "material.h"
 #include "sphere.h"
 #include "cuda_renderer.h"
+#include <chrono>
 
 
 int main() {
@@ -78,6 +79,11 @@ int main() {
     int image_height = static_cast<int>(image_width / aspect_ratio);
     image_height = (image_height < 1) ? 1 : image_height;
 
+    // Measure render time and print to stderr (std::clog) so stdout remains the PPM image output.
+    auto render_start = std::chrono::steady_clock::now();
     renderer.render(world, image_width, image_height, samples_per_pixel, max_depth,
                     lookfrom, lookat, vup, vfov, aspect_ratio, defocus_angle, focus_dist);
+    auto render_end = std::chrono::steady_clock::now();
+    std::chrono::duration<double> render_elapsed = render_end - render_start;
+    std::clog << "Render time: " << render_elapsed.count() << " seconds\n";
 }
